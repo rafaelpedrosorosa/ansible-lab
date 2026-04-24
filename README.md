@@ -1,4 +1,4 @@
-# AWX Lab
+# ANSIBLE Lab
 
 - Ansible Playbooks
 - AWX Workflows
