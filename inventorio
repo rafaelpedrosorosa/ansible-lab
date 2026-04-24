@@ -1,0 +1,10 @@
+[web]
+node1
+node2
+
+[db]
+node3
+
+[cluster:children]
+web
+db
