@@ -1,6 +1,7 @@
-# ANSIBLE Lab
+Enterprise Linux Automation Lab
 
-- Ansible Playbooks
+- Ansible Automation
 - AWX Workflows
-- GitHub Actions
 - RHCE Practice
+- Infrastructure Hardening
+- CI/CD with GitHub Actions
