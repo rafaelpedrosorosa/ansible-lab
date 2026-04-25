@@ -1,0 +1,6 @@
+---
+# tasks file for roles/system_report
+- name: Gerar relatorio do sistema
+  template:
+    src: report.j2
+    dest: "{{ system_report_dest }}"

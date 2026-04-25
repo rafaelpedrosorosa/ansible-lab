@@ -1,0 +1,27 @@
+---
+- name: exemplo do modulo copy
+  hosts: web
+  tasks:
+    - name: copiar diversas linhas
+      copy:
+        content: |
+          Hostname: {{ ansible_facts['hostname'] }}
+          Distribuicao: {{ ansible_facts['distribution'] }}
+          Versao: {{ ansible_facts['distribution_version'] }}
+          Ip: {{ ansible_facts['default_ipv4']['address'] }}
+          Mem Total: {{ ansible_facts['memtotal_mb'] }}
+          Mem Free: {{ ansible_facts['memfree_mb'] }}
+          CPU: {{ ansible_facts['processor_vcpus'] }}
+        dest: /tmp/diversas-linhas.txt 
+    - name: copiar em apenas uma linha
+      copy:
+        content: >
+          Hostname: {{ ansible_facts['hostname'] }}
+          Distribuicao: {{ ansible_facts['distribution'] }}
+          Versao: {{ ansible_facts['distribution_version'] }}
+          Ip: {{ ansible_facts['default_ipv4']['address'] }}
+          Mem Total: {{ ansible_facts['memtotal_mb'] }}
+          Mem Free: {{ ansible_facts['memfree_mb'] }}
+          CPU: {{ ansible_facts['processor_vcpus'] }}
+        dest: /tmp/uma-linha.txt 
+           
