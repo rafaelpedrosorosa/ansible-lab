@@ -1,0 +1,13 @@
+---
+- name: var exemplo
+  hosts: web,db
+  vars:
+    meu_pacote: httpd
+
+  vars_files: ../vars/meuvars
+
+  tasks:
+    - name: testar var no modulo debug
+      debug:
+        msg: Este meu pacote {{ meu_pacote }} na {{ versao }}
+
