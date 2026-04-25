@@ -1,0 +1,8 @@
+---
+- name: Baseline de Servidores
+  hosts: web
+  gather_facts: yes
+
+  roles:
+    - system_report
+
