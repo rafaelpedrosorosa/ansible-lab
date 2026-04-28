@@ -1,0 +1,25 @@
+---
+- name: Meu Primeiro Playbook
+  hosts: web
+  vars_files: web-vars
+  tasks:
+    - name: instalar pacote, habilitar e configurar firewall
+      yum:
+        name: "{{ item.name }}"
+        state: "{{ item.state}}"
+      loop: "{{ pacotes }}"
+
+    - name: iniciar o servidor web
+      service:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+        enabled: "{{ item.enabled }}"
+      loop: "{{ services }}"
+
+    - name: abrir o firewall
+      firewalld:
+        service: "{{ item }}"
+        permanent: true
+        state: enabled
+        immediate: true
+      loop: "{{ firewall_config }}" 

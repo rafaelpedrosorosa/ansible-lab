@@ -1,0 +1,21 @@
+---
+- name: exemplo de condicionais
+  hosts: all
+  tasks:
+    - name: copiar arquivo para grupo web
+      copy:
+        src: ../files/foo.conf
+        dest: /tmp/foo.conf
+        owner: control
+        group: control
+        mode: '0644'
+      when: inventory_hostname in groups['web']
+
+    - name: copiar arquivo para grupo db
+      copy:
+        src: ../files/meudb.conf
+        dest: /tmp/meudb.conf
+        owner: control
+        group: control
+        mode: '0644'
+      when: inventory_hostname in groups['db']

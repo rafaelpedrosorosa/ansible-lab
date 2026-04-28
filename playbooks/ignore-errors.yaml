@@ -1,0 +1,17 @@
+---
+- name: exemplo de ignore errors
+  hosts: all
+  tasks: 
+  - name: minha tarefa 1
+    debug:
+      msg: Minha tarefa 1
+
+  - name: minha tarefa 2 com falha
+    shell: /bin/false
+    ignore_errors: true
+
+  - name: minha tarefa 3
+    debug:
+      msg: Minha tarefa 3 roda apenas com ignore errors
+
+

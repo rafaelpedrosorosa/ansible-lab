@@ -1,0 +1,35 @@
+---
+- name: exemplo de force handlers
+  hosts: all
+  force_handlers: true
+  tasks: 
+  - name: modulo debug tarefa 1
+    debug:
+      msg: Minha tarefa 1
+
+  - name: criar variavel meuuser com usuarios usando /bin/basha tarefa 2 
+    shell: |
+      cat /etc/passwd | grep "/bin/bash" | cut -d: -f1
+    register: myusers
+    notify:
+      - meuhandler
+      - meuoutrohandler
+
+  - name: tarefa para falhar
+    shell: /bin/false
+
+  - name: loop no myusers
+    debug:
+      msg: "Usuario com /bin/bash {{ item }} no servidor {{ ansible_facts['hostname'] }}"
+    loop: "{{ myusers.stdout_lines  }}"
+
+  handlers:
+   - name: meuhandler
+     debug:
+      var: myusers.stdout_lines
+
+   - name: meuoutrohandler
+     debug:
+       msg: meu outro handler
+
+

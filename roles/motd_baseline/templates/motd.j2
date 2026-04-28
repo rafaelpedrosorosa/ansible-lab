@@ -1,0 +1,24 @@
+#####################################################
+
+Voce logou na maquina {{ ansible_facts['hostname'] }}
+com IP {{ ansible_facts['default_ipv4']['address']}}.
+
+A distribuicao dessa maquina e {{ ansible_facts['distribution']}}
+
+com versao  {{ ansible_facts['distribution_version']}}
+
+Abaixo servidores da infra estrutura:
+
+WEB:
+
+{% for host in groups['web'] %}
+- {{ hostvars[host]['ansible_hostname'] }}
+{% endfor %}
+
+DB:
+
+{% for host in groups['db'] %}
+- {{ hostvars[host]['ansible_hostname'] }}
+{% endfor %}
+
+####################################################

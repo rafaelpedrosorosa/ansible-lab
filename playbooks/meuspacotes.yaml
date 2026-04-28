@@ -1,0 +1,5 @@
+[pacotes]
+pacote_web=httpd
+pacote_db=mariadb
+pacote_nfs=nfs-utils
+

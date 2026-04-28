@@ -1,0 +1,24 @@
+pacotes:
+  - name: httpd
+    state: present
+  - name: nfs-utils
+    state: latest
+  - name: firewalld
+    state: present
+  
+services:
+  - name: httpd
+    state: started
+    enabled: yes
+  - name: nfs-server
+    state: started
+    enabled: no
+  - name: firewalld
+    state: started
+    enabled: yes
+
+firewall_config:
+  - https
+  - http
+  - nfs
+

@@ -1,0 +1,10 @@
+---
+- name: testar group e host_vars
+  hosts: web
+  vars:
+    meu_pacote: "este pacote esta no playbook"
+  tasks:
+    - name: testar as variaveis e suas precedencias
+      debug:
+        msg: "Este pacote veio do {{ meu_pacote  }}"
+

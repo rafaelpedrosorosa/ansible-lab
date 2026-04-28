@@ -1,0 +1,31 @@
+---
+- name: Playbook para criar arquivo de informacao
+  hosts: web
+  tasks:
+    - name: criar um index.html
+      copy:
+        content: |
+          Esse e novo teste
+          Hostname: {{ ansible_facts['hostname'] }}
+          Distribuicao: {{ ansible_facts['distribution'] }}
+          Versao: {{ ansible_facts['distribution_version'] }}
+          IP: {{ ansible_facts['default_ipv4']['address'] }}
+          Mem Total: {{ ansible_facts['memtotal_mb'] }}
+          Mem Free: {{ ansible_facts['memfree_mb'] }}
+          CPU: {{ ansible_facts['processor_vcpus'] }}
+        dest: /var/www/html/index.html
+
+    - name: instala pacote
+      yum: 
+        name: httpd
+        state: latest
+
+    - name: inicializa servico
+      service:
+        name: httpd
+        enabled: yes
+
+
+
+
+

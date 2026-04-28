@@ -1,0 +1,15 @@
+---
+- name: coletar ansible_facts do grupo web
+  hosts: web
+  tasks:
+    - name: coletar ansible_facts no grupo web
+      gather_facts:
+
+
+- name: coletar as variaveis do grupo web e imprimilas no grupo db
+  hosts: db
+  tasks:
+    - name: correr modulo debug para testar
+      debug:
+        msg: Info das variaveis {{ hostvars[item]['ansible_facts']['default_ipv4']['address'] }}
+      loop: "{{ groups['web'] }}" 

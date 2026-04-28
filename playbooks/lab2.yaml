@@ -1,0 +1,26 @@
+---
+- name: playbook com modulos debug
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+
+    - name: exibir hostname apenas para grupo db
+      debug:
+        msg: "Hostname: {{ ansible_facts['hostname'] }}"
+      when: inventory_hostname in groups['db']
+
+    - name: exibir ip usando hostvars
+      debug:
+        msg: "IP do Host {{ inventory_hostname }} = {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+
+    - name: exibir memoria acima de 700
+      debug:
+        msg: "Memoria acima de 700mg"
+      when: ansible_facts['memfree_mb'] | int > 700
+
+    - name: Memoria Baixa
+      debug:
+        msg: "Memoria Baixa"
+      when: ansible_facts['memfree_mb'] | int < 700
+          

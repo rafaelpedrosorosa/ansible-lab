@@ -1,0 +1,10 @@
+---
+- name: exemplo de fatos no ansible
+  hosts: all
+  tasks:
+    - name: modulo debug para teste
+      debug:
+        msg: |
+          Hostname: {{ ansible_facts['hostname'] }} 
+          IP: {{ ansible_facts['default_ipv4']['address'] }}
+

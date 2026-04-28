@@ -1,0 +1,16 @@
+---
+- name: atualizar MOTD
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: configurar /etc/mnotd
+      template: 
+        src: ../templates/motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'
+
+
