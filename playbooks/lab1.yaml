@@ -1,21 +1,18 @@
 ---
 - name: playbook para instalacao de pacote httpd
   hosts: web
-
   tasks:
     - name: instala pacote
       yum:
         name: httpd
         state: latest
       tags: step1
-
     - name: inicializa servico
       service:
         name: httpd
         state: started
         enabled: yes
       tags: step2    
-
     - name: debug
       debug: 
         msg: | 
@@ -25,7 +22,6 @@
           Memtotal:  {{ ansible_facts['memtotal_mb'] }}
           Memfree:  {{ ansible_facts['memfree_mb'] }}
       tags: step3
-
     - name: ajusta index
       copy:
         content: |
