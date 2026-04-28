@@ -1,0 +1,8 @@
+Hostname: {{ ansible_facts['hostname'] }}
+Distribuicao: {{ ansible_facts['distribution'] }}
+Versao: {{ ansible_facts['distribution_version'] }}
+IP: {{ ansible_facts['default_ipv4']['address'] }}
+Mem Total: {{ ansible_facts['memtotal_mb'] }}
+Mem Free: {{ ansible_facts['memfree_mb'] }}
+CPU: {{ ansible_facts['processor_vcpus'] }}
+

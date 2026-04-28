@@ -1,0 +1,33 @@
+---
+- name: exemplo de uso de bloçcos para agrupar tarefas
+  hosts: all
+  vars:
+    - meupacote:
+      - httpd
+      - redis
+  tasks:
+
+    - name: instalar, configurar e iniciar servico apache
+      block:
+        - name: instalar httpd e redis
+          yum:
+            name: "{{ meupacote }}"
+            state: present
+
+        - name: comecar servico
+          service:
+            name: "{{ item }}"
+            state: started
+            enabled: true
+          loop: "{{ meupacote}}"
+      when: ansible_facts['distribution'] == 'Rocky' and inventory_hostname in groups['web']
+      ignore_errors: true
+
+    - name: bloco para criar arquivo de maquina do grupo db com IPs das maquinas do grupo web
+      block:
+        - name: aplicar modelo (template) com Ips do grupo web no servidor do grupo db
+          template:
+            src: ../templates/src.j2
+            dest: /etc/foo.conf
+      when: inventory_hostname in groups['db']
+      ignore_errors: true 
