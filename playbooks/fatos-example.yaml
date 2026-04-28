@@ -7,4 +7,3 @@
         msg: |
           Hostname: {{ ansible_facts['hostname'] }} 
           IP: {{ ansible_facts['default_ipv4']['address'] }}
-
