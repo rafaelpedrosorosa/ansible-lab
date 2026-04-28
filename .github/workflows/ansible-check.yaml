@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Ansible Lab Validation
 
 on:
@@ -28,3 +29,8 @@ jobs:
 
       - name: Ansible lint
         run: ansible-lint .
+=======
+YAML lint
+Inventory validation
+Syntax check
+>>>>>>> f9277a9 (Adiciona workflow de validacao e ajustes do lab)
